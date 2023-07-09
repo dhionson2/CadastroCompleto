@@ -1,7 +1,7 @@
 export default [
     {
       id: 1,
-      name: 'Jonas Machado',
+      name: 'Jonas Machado aaa',
       email: 'joninha.machadinho@empmail.com',
       avatarUrl:
         'https://cdn.pixabay.com/photo/2016/11/01/21/11/avatar-1789663_960_720.png',
