@@ -1,30 +1,33 @@
 import React from "react";
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements';
 import users from "../data/users";
 
-export default props => {
+export default function UserList(props) {
 
-    function getUserItem({ item: user }) {
-     
-
-        return (
-            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}>
-                <Image source={{ uri: user.avatarUrl }} style={{ width: 50, height: 50, borderRadius: 25 }} />
-                <View style={{ marginLeft: 10 }}>
-                    <Text>{user.name}</Text>
-                    <Text>{user.email}</Text>
-                </View>
-            </View>
-        );
-    }
-
+  function getUserItem({ item: user }) {
     return (
-        <View>
-            <FlatList 
-                keyExtractor={user => user.id.toString()}
-                data={users}
-                renderItem={getUserItem}
-            />
-        </View>
+      <ListItem
+        key={user.id}
+        bottomDivider
+        onPress={() => props.navigation.navigate('UserForm', user)}
+      >
+        <Avatar source={{ uri: user.avatarUrl }} />
+        <ListItem.Content>
+          <ListItem.Title>{user.name}</ListItem.Title>
+          <ListItem.Subtitle>{user.email}</ListItem.Subtitle>
+        </ListItem.Content>
+      </ListItem>
     );
+  }
+
+  return (
+    <View>
+      <FlatList
+        keyExtractor={user => user.id.toString()}
+        data={users}
+        renderItem={getUserItem}
+      />
+    </View>
+  );
 }
